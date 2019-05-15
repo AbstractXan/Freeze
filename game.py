@@ -2,7 +2,11 @@ import pygame
 from random import randint
 from player import Player
 
+# Class for stationary platforms
 class Platform:
+    # px, py are the top left corner coordinates
+    # height and width are the dimensions of the block
+    # rect is the pygame Rect representation of the block
     def __init__(self, px, py, width, height):
         self.px = px
         self.py = py
@@ -10,11 +14,13 @@ class Platform:
         self.height = height
         self.rect = pygame.Rect(px,py,width,height)
     
+    # Get the top left corner of the box
     def getDrawBoxTopLeft(self):
-        return self.px - self.width/2, self.py - self.height/2
-
-    def getCenter(self):
         return self.px, self.py
+
+    #Get the center of the box
+    def getCenter(self):
+        return self.px + self.width/2, self.py + self.height/2
 
     def getDim(self):
         return self.width, self.height
