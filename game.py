@@ -31,7 +31,7 @@ class Platform:
     def getRect(self):
         return self.rect
 
-
+# Global Game Parameters
 FPS = 60
 PLAYER_WIDTH = 56
 PLAYER_HEIGHT = 40
@@ -41,6 +41,7 @@ PLAYER_STARTX = 220
 PLAYER_STARTY = 320
 PLAYER_MAX_Y = 630
 
+# Class that holds the game state and information
 class Game:
 
     def __init__(self):
