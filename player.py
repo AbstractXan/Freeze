@@ -1,6 +1,7 @@
 import math
 from pygame import Rect
 
+# Player Class. Keeps track of position and velocity and other variables
 class Player:
     def __init__(self, px = 100, py = 250, width = 56, height = 40, maxy = 800, gravity = 0, upVel = -7, maxVel = 20):
         self.px = px
@@ -20,6 +21,7 @@ class Player:
         self.rect = Rect(0,0,0,0)
         self.updateRect()
 
+    #Updates the rect to its current position
     def updateRect(self):
         self.rect.x, self.rect.y = self.getDrawBoxTopLeft()
         self.rect.w, self.rect.h = self.getDim()
@@ -39,11 +41,13 @@ class Player:
     def getDim(self):
         return self.width, self.height
 
+    #Move in x direction by a small amount dx. Check for collisions
     def incX(self,dx,bl):
         self.px += dx
         self.updateRect()
+        #Check all the blocks for collisions
         for i in bl:
-            if self.getRect().colliderect(i.getRect()):
+            if self.getRect().colliderect(i.getRect()):     #If there is a collision, set x to box boundary
                 if dx >= 0:
                     self.px = i.getRect().x
                     self.vx = 0
@@ -52,6 +56,7 @@ class Player:
                 break
         self.updateRect()
 
+    #Move in y direction by amount dy. Same as above
     def incY(self,dy,bl):
         self.py += dy
         self.updateRect()
@@ -65,6 +70,7 @@ class Player:
                 break
         self.updateRect()
 
+    #Updates the block to move left, right, up or down based on velocity
     def update(self, blockList):
         self.incX(self.xvel,blockList)
         self.incY(self.yvel,blockList)
